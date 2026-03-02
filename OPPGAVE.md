@@ -28,15 +28,6 @@ I et klasserom kan studentene lese beskjeder fra læreren. Hvert klasserom har o
 **Oppgave:** Beskriv en konseptuell datamodell (med tekst eller ER-diagram) for systemet. Modellen skal kun inneholde entiteter, som du har valgt, og forholdene mellom dem, med kardinalitet. Du trenger ikke spesifisere attributter i denne delen.
 
 **Ditt svar:***
-
-
-## Del 2: Logisk Skjema (Tabellstruktur)
-
-**Oppgave:** Oversett den konseptuelle modellen til en logisk tabellstruktur. Spesifiser tabellnavn, attributter (kolonner), datatyper, primærnøkler (PK) og fremmednøkler (FK). Tegn et utvidet ER-diagram med [mermaid.live](https://mermaid.live/) eller eventuelt på papir.
-
-
-**Ditt svar:***
-
 Del 1: Konseptuell Datamodell (ER – uten attributter)
 
 Entiteter:
@@ -85,6 +76,15 @@ erDiagram
 
     FORUM_POST ||--o{ FORUM_POST : "svar_pa"
 ```
+
+## Del 2: Logisk Skjema (Tabellstruktur)
+
+**Oppgave:** Oversett den konseptuelle modellen til en logisk tabellstruktur. Spesifiser tabellnavn, attributter (kolonner), datatyper, primærnøkler (PK) og fremmednøkler (FK). Tegn et utvidet ER-diagram med [mermaid.live](https://mermaid.live/) eller eventuelt på papir.
+
+
+**Ditt svar:***
+
+
 
 
 ## Del 3: Datadefinisjon (DDL) og Mock-Data
