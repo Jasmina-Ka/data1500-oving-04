@@ -1,4 +1,3 @@
-```sql
 -- Drop i riktig rekkefølge
 DROP TABLE IF EXISTS forum_post CASCADE;
 DROP TABLE IF EXISTS message CASCADE;
