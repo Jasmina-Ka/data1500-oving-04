@@ -84,6 +84,87 @@ erDiagram
 
 **Ditt svar:***
 
+Den konseptuelle modellen er oversatt til følgende tabellstruktur:
+
+- app_user (brukere: studenter og lærere)
+- classroom
+- app_group
+- group_member (koblingstabell mellom bruker og gruppe)
+- group_classroom_access (koblingstabell mellom gruppe og klasserom)
+- message (beskjeder i klasserom)
+- forum_post (foruminnlegg med hierarkisk struktur via parent_post_id)
+
+Primærnøkler (PK) og fremmednøkler (FK) er definert for å sikre referanseintegritet mellom tabellene.
+
+```mermaid
+erDiagram
+    app_user {
+      int user_id PK
+      varchar username
+      text password_hash
+      varchar role
+      text full_name
+      timestamptz created_at
+    }
+
+    classroom {
+      int classroom_id PK
+      varchar code
+      text name
+      int teacher_id FK
+      timestamptz created_at
+    }
+
+    app_group {
+      int group_id PK
+      text name
+      timestamptz created_at
+    }
+
+    group_member {
+      int group_id FK
+      int user_id FK
+      timestamptz joined_at
+    }
+
+    group_classroom_access {
+      int group_id FK
+      int classroom_id FK
+      timestamptz granted_at
+    }
+
+    message {
+      int message_id PK
+      int classroom_id FK
+      int sender_id FK
+      timestamptz sent_at
+      text title
+      text content
+    }
+
+    forum_post {
+      int post_id PK
+      int classroom_id FK
+      int sender_id FK
+      int parent_post_id FK
+      timestamptz posted_at
+      text title
+      text content
+    }
+
+    app_user ||--o{ classroom : teacher_id
+    app_user ||--o{ message : sender_id
+    app_user ||--o{ forum_post : sender_id
+
+    classroom ||--o{ message : classroom_id
+    classroom ||--o{ forum_post : classroom_id
+
+    app_user }o--o{ app_group : group_member
+    app_group }o--o{ classroom : group_classroom_access
+
+    forum_post ||--o{ forum_post : parent_post_id
+```
+
 
 
 
