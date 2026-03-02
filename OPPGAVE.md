@@ -37,6 +37,55 @@ I et klasserom kan studentene lese beskjeder fra læreren. Hvert klasserom har o
 
 **Ditt svar:***
 
+Del 1: Konseptuell Datamodell (ER – uten attributter)
+
+Entiteter:
+
+Bruker (student eller lærer)
+
+Klasserom
+
+Gruppe
+
+Beskjed (fra lærer i et klasserom)
+
+Innlegg (foruminnlegg i et klasserom, med svar = hierarkisk tråd)
+
+Relasjoner og kardinalitet:
+
+En lærer kan være ansvarlig for mange klasserom (1:N).
+
+Et klasserom har akkurat én ansvarlig lærer (N:1).
+
+En bruker kan være medlem i mange grupper, og en gruppe kan ha mange brukere (M:N).
+
+En gruppe kan få tilgang til mange klasserom, og et klasserom kan være tilgjengelig for mange grupper (M:N).
+
+Et klasserom kan ha mange beskjeder, hver beskjed hører til ett klasserom (1:N).
+
+Et klasserom kan ha mange innlegg, hvert innlegg hører til ett klasserom (1:N).
+
+En bruker kan skrive mange beskjeder/innlegg, hvert innlegg/beskjed har én avsender (1:N).
+
+Innlegg kan svare på ett annet innlegg (0/1 : N) → trådstruktur (self-relation).
+
+Mermaid (konseptuell):
+
+```mermaid
+erDiagram
+    USER ||--o{ CLASSROOM : "ansvarlig_larer"
+    USER ||--o{ MESSAGE : "sender"
+    USER ||--o{ FORUM_POST : "sender"
+
+    CLASSROOM ||--o{ MESSAGE : "har"
+    CLASSROOM ||--o{ FORUM_POST : "har"
+
+    USER }o--o{ GROUP : "medlemskap"
+    GROUP }o--o{ CLASSROOM : "tilgang"
+
+    FORUM_POST ||--o{ FORUM_POST : "svar_pa"
+```
+
 
 ## Del 3: Datadefinisjon (DDL) og Mock-Data
 
